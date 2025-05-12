@@ -154,6 +154,7 @@ class Annotator:
         input_dato: YOLOInput = self.filtered_inputs[-1]
         datalines = visualize_and_get_points(input_dato.image_path, input_dato.label_path)
         input_dato.save(self.output_folder, datalines)
+        return True
 
 
 def main():
