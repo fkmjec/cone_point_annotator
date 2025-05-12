@@ -79,7 +79,7 @@ def visualize_and_get_points(image_path, label_path, resized_shape=(256, 256)):
 
 class PoseDataLine:
     def __init__(self, class_id, cx, cy, w, h, top, left, right):
-        self.class_id = class_id
+        self.class_id = int(class_id)
         self.cx = cx
         self.cy = cy
         self.w = w
