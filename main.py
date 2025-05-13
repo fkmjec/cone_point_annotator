@@ -29,6 +29,7 @@ def visualize_and_get_points(image_path, label_path, resized_shape=(256, 256)):
 
         class_id, cx, cy, w, h = map(float, parts)
 
+
         # Convert normalized to absolute coordinates
         cx *= orig_w
         cy *= orig_h
@@ -40,11 +41,12 @@ def visualize_and_get_points(image_path, label_path, resized_shape=(256, 256)):
         x2 = int(cx + w / 2)
         y2 = int(cy + h / 2)
 
+        bbox_pixel_buffer = 15
         # Clip coordinates
-        x1 = max(0, x1)
-        y1 = max(0, y1)
-        x2 = min(orig_w, x2)
-        y2 = min(orig_h, y2)
+        x1 = max(0, x1 - bbox_pixel_buffer)
+        y1 = max(0, y1 - bbox_pixel_buffer)
+        x2 = min(orig_w, x2 + bbox_pixel_buffer)
+        y2 = min(orig_h, y2 + bbox_pixel_buffer)
 
         crop = image[y1:y2, x1:x2]
         crop_resized = cv2.resize(crop, resized_shape)
