@@ -117,13 +117,11 @@ class YOLOInput:
         label_file = os.path.basename(self.label_path)
         image_output_path = output_ds_dir + "/images/" + image_file
         label_output_path = output_ds_dir + "/labels/" + label_file
-        # TODO save the image
         LOGGER.info(f"Saving image at path {image_output_path}")
-        # TODO serialize and save the bboxes and keypoints
+        shutil.copy(self.image_path, image_output_path)
         LOGGER.info(f"Saving label at path {label_output_path}")
         serialized = list(map(lambda x: x.serialize(), datalines))
         full = "\n".join(serialized)
-
         with open(label_output_path, "w") as f:
             f.write(full)
 
